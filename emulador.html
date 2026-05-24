@@ -1,1 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Emulador - GameZone BR</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <script src="assets/js/data.js"></script>
+  <style>
+    body { 
+      background: radial-gradient(circle at center, #0a0a1f 0%, #000000 100%); 
+      color: #e0f0ff; 
+    }
+    .neon-blue { 
+      text-shadow: 0 0 15px #00f0ff, 0 0 30px #00aaff; 
+    }
+    .section-title:after {
+      content: ''; 
+      position: absolute; 
+      width: 60%; 
+      height: 3px;
+      background: linear-gradient(to right, #00f0ff, transparent);
+      bottom: -6px; 
+      left: 0;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
 
+  <nav class="fixed top-0 w-full bg-black/90 backdrop-blur-md border-b border-cyan-500/30 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-3xl font-bold neon-blue">GAMEZONE <span class="text-cyan-400">BR</span></a>
+      <a href="index.html" class="hover:text-cyan-400">← Voltar</a>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto px-6 pt-28" id="content">
+    <!-- JS vai preencher aqui -->
+  </div>
+
+  <footer class="text-center py-12 text-zinc-500 mt-20">
+    GameZone BR © 2026 • Portal de Emulação Mobile
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const emuName = urlParams.get('emu') || "NetherSX2";
+
+    const data = emuladoresData[emuName];
+    if (!data) {
+      document.getElementById('content').innerHTML = `<h1 class="text-red-500 text-center">Emulador não encontrado</h1>`;
+    } else {
+      let html = `
+        <div class="text-center pb-12">
+          <img src="\( {data.imagem}" class="mx-auto h-44 drop-shadow-2xl mb-6" alt=" \){data.nome}">
+          <h1 class="text-5xl font-bold neon-blue">${data.nome}</h1>
+          <p class="text-2xl text-cyan-300 mt-2">${data.categoria}</p>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-8 space-y-16">
+            <section>
+              <h2 class="section-title text-3xl font-bold mb-6">Sobre</h2>
+              <p class="text-lg text-zinc-300">${data.descricao}</p>
+            </section>
+
+            <section class="bg-zinc-950/50 rounded-3xl p-8">
+              <h2 class="section-title text-3xl font-bold mb-8">Requisitos Mínimos</h2>
+              <div class="grid md:grid-cols-2 gap-4">
+                \( {data.requisitos.map(r => `<div class="flex items-center gap-3"><i class="fas fa-check text-cyan-400"></i><span> \){r}</span></div>`).join('')}
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title text-3xl font-bold mb-8">Melhor Configuração</h2>
+              <div class="bg-zinc-900/70 border border-cyan-500/20 rounded-3xl p-8">
+                ${data.configuracao.map(c => `<div class="py-3 border-b border-zinc-700 last:border-0">→ ${c}</div>`).join('')}
+              </div>
+            </section>
+
+            <section>
+              <h2 class="section-title text-3xl font-bold mb-8">Jogos Recomendados</h2>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                \( {data.jogos.map(j => `<div class="bg-zinc-900 p-4 rounded-2xl text-center"> \){j}</div>`).join('')}
+              </div>
+            </section>
+          </div>
+
+          <div class="lg:col-span-4">
+            <div class="sticky top-28 bg-zinc-900/80 border border-cyan-500/30 rounded-3xl p-8 text-center">
+              <h3 class="text-cyan-400 font-bold text-xl mb-4">Performance Estimada</h3>
+              <div class="text-6xl font-bold text-cyan-300">${data.performance}</div>
+            </div>
+          </div>
+        </div>
+      `;
+      document.getElementById('content').innerHTML = html;
+    }
+  </script>
+</body>
+</html>
