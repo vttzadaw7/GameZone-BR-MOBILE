@@ -3,83 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GameZone BR - Portal de Emulação Mobile</title>
+  <title>GameZone BR</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
-    body {
-      background: radial-gradient(circle at center, #0a0a1f 0%, #000000 100%);
-      color: #e0f0ff;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-    .neon-blue {
-      text-shadow: 0 0 15px #00f0ff, 0 0 30px #00aaff;
-    }
-    .title-font {
-      font-family: sans-serif;
-      letter-spacing: 2px;
-    }
-    .card-glow {
-      transition: all 0.4s ease;
-    }
-    .card-glow:hover {
-      transform: translateY(-12px) scale(1.03);
-      box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
-    }
-    .particle-bg {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-      opacity: 0.18;
-    }
+    body { background: #0a0a1f; color: #e0f0ff; }
+    .neon { text-shadow: 0 0 20px #00f0ff; }
   </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen p-4">
 
-  <!-- Fundo de partículas -->
-  <canvas id="particles" class="particle-bg"></canvas>
+  <h1 class="text-4xl font-bold text-center neon mb-8">𝘎𝘢𝘮𝘦𝘡𝘰𝘯𝘦 𝘉𝘙</h1>
 
-  <!-- Navbar -->
-  <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-cyan-500/30 z-50">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-3xl font-bold neon-blue title-font">𝘎𝘢𝘮𝘦𝘡𝘰𝘯𝘦 𝘉𝘙</h1>
-      
-      <div class="flex gap-8 text-lg">
-        <a href="#" class="hover:text-cyan-400 transition">Início</a>
-        <a href="#emuladores" class="hover:text-cyan-400 transition">Emuladores</a>
-      </div>
-      
-      <button id="musicBtn" class="text-2xl hover:text-cyan-400 transition">
-        <i class="fas fa-volume-up"></i>
-      </button>
-    </div>
-  </nav>
+  <div class="max-w-6xl mx-auto" id="emuladores-grid">
+    <!-- JS vai preencher -->
+  </div>
 
-  <!-- Hero -->
-  <section class="pt-32 pb-20 text-center">
-    <h2 class="text-6xl md:text-7xl font-bold neon-blue mb-6 title-font">
-      O MELHOR PORTAL<br>DE EMULAÇÃO MOBILE
-    </h2>
-    <p class="text-xl text-cyan-300 max-w-2xl mx-auto">
-      NetherSX2 • PPSSPP • Dolphin • Citra • DuckStation • SNES9x • Redream
-    </p>
-  </section>
+  <script>
+    const emuladoresData = {
+      "NetherSX2": { nome: "NetherSX2", categoria: "PlayStation 2", desc: "Melhor emulador de PS2", imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/PS2_logo.svg/480px-PS2_logo.svg.png" },
+      "PPSSPP": { nome: "PPSSPP", categoria: "PlayStation Portable", desc: "Emulador de PSP", imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/PPSSPP_logo.svg/480px-PPSSPP_logo.svg.png" },
+      "Vita3K": { nome: "Vita3K", categoria: "PlayStation Vita", desc: "Emulador de PS Vita", imagem: "https://i.ibb.co/0vX9kLm/vita3k-logo.png" }
+    };
 
-  <!-- Emuladores -->
-  <section id="emuladores" class="max-w-7xl mx-auto px-6 py-16">
-    <h2 class="text-4xl font-bold text-center mb-12 neon-blue title-font">Emuladores Disponíveis</h2>
-    
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8" id="emuladores-grid">
-      <!-- Cards gerados pelo JS -->
-    </div>
-  </section>
-
-  <footer class="bg-black/90 py-12 text-center border-t border-cyan-900">
-    <p>GameZone BR © 2026 - Portal Gamer de Emulação Mobile 🔥</p>
-  </footer>
-
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/main.js"></script>
+    const grid = document.getElementById('emuladores-grid');
+    Object.keys(emuladoresData).forEach(key => {
+      const e = emuladoresData[key];
+      const card = document.createElement('div');
+      card.className = "bg-zinc-900 p-5 rounded-3xl mb-6";
+      card.innerHTML = `
+        <img src="${e.imagem}" class="h-20 mx-auto mb-4">
+        <h2 class="text-2xl font-bold">${e.nome}</h2>
+        <p class="text-cyan-400">${e.categoria}</p>
+        <p class="text-gray-400 mt-2">${e.desc}</p>
+        <a href="emulador.html?emu=${key}" class="block mt-4 py-3 bg-cyan-500 text-black text-center font-bold rounded-2xl">Ver Detalhes</a>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
 </body>
 </html>
