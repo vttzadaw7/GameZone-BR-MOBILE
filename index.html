@@ -10,10 +10,14 @@
     body {
       background: radial-gradient(circle at center, #0a0a1f 0%, #000000 100%);
       color: #e0f0ff;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
     .neon-blue {
-      text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 40px #00aaff;
+      text-shadow: 0 0 15px #00f0ff, 0 0 30px #00aaff;
+    }
+    .title-font {
+      font-family: sans-serif;
+      letter-spacing: 2px;
     }
     .card-glow {
       transition: all 0.4s ease;
@@ -27,7 +31,7 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
       z-index: -1;
-      opacity: 0.15;
+      opacity: 0.18;
     }
   </style>
 </head>
@@ -39,7 +43,7 @@
   <!-- Navbar -->
   <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-cyan-500/30 z-50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-3xl font-bold neon-blue">GAMEZONE <span class="text-cyan-400">BR</span></h1>
+      <h1 class="text-3xl font-bold neon-blue title-font">𝘎𝘢𝘮𝘦𝘡𝘰𝘯𝘦 𝘉𝘙</h1>
       
       <div class="flex gap-8 text-lg">
         <a href="#" class="hover:text-cyan-400 transition">Início</a>
@@ -54,7 +58,7 @@
 
   <!-- Hero -->
   <section class="pt-32 pb-20 text-center">
-    <h2 class="text-6xl md:text-7xl font-bold neon-blue mb-6">
+    <h2 class="text-6xl md:text-7xl font-bold neon-blue mb-6 title-font">
       O MELHOR PORTAL<br>DE EMULAÇÃO MOBILE
     </h2>
     <p class="text-xl text-cyan-300 max-w-2xl mx-auto">
@@ -64,7 +68,7 @@
 
   <!-- Emuladores -->
   <section id="emuladores" class="max-w-7xl mx-auto px-6 py-16">
-    <h2 class="text-4xl font-bold text-center mb-12 neon-blue">Emuladores Disponíveis</h2>
+    <h2 class="text-4xl font-bold text-center mb-12 neon-blue title-font">Emuladores Disponíveis</h2>
     
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8" id="emuladores-grid">
       <!-- Cards gerados pelo JS -->
@@ -72,7 +76,7 @@
   </section>
 
   <footer class="bg-black/90 py-12 text-center border-t border-cyan-900">
-    <p>GameZone BR © 2026 - Portal Gamer de Emulação Mobile</p>
+    <p>GameZone BR © 2026 - Portal Gamer de Emulação Mobile 🔥</p>
   </footer>
 
   <script src="assets/js/data.js"></script>
